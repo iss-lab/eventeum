@@ -467,4 +467,4 @@ Eventeum can be embedded into an existing Spring Application via an annotation.
 3. Within your Application class or a `@Configuration` annotated class, add the `@EnableEventeum` annotation.
 
 ## Known Caveats / Issues
-* In multi-instance mode, where there is more than one Eventeum instance in a system, your services are required to handle duplicate messages gracefully, as each instance will broadcast the same events.
+* In multi-instance mode, where there is more than one Eventeum instance in a system, your services are required to handle duplicate messages gracefully, as each instance will broadcast the same events. 
