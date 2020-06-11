@@ -7,6 +7,8 @@ import net.consensys.eventeum.dto.event.ContractEventDetails;
 import net.consensys.eventeum.dto.message.ContractEvent;
 import net.consensys.eventeum.dto.transaction.TransactionDetails;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.TimeUnit;
 
@@ -21,6 +23,8 @@ import java.util.concurrent.TimeUnit;
  * @author Craig Williams <craig.williams@consensys.net>
  */
 public class EventBroadcasterWrapper implements BlockchainEventBroadcaster {
+
+    private static final Logger LOG = LoggerFactory.getLogger(EventBroadcasterWrapper.class);
 
     private Cache<Integer, ContractEventDetails> contractEventCache;
 
@@ -55,6 +59,7 @@ public class EventBroadcasterWrapper implements BlockchainEventBroadcaster {
 
     @Override
     public void broadcastContractEvent(ContractEventDetails eventDetails) {
+        LOG.info("broadcastContractEvent called from wrapper: " + Integer.valueOf(eventDetails.hashCode()));
         synchronized(this) {
             if (contractEventCache.getIfPresent(Integer.valueOf(eventDetails.hashCode())) == null) {
                 contractEventCache.put(Integer.valueOf(eventDetails.hashCode()), eventDetails);

@@ -18,6 +18,6 @@ public class LoggingBlockListener implements BlockListener {
 
     @Override
     public void onBlock(Block block) {
-        logger.info(String.format("New block mined. Hash: %s, Number: %s", block.getHash(), block.getNumber()));
+        logger.trace(String.format("New block mined. Hash: %s, Number: %s", block.getHash(), block.getNumber()));
     }
 }
